@@ -1,24 +1,8 @@
-dbt_compute:
-  outputs:
-
-    dev:
-      type: postgres
-      threads: [1 or more]
-      host: [host]
-      port: [port]
-      user: [dev_username]
-      pass: [dev_password]
-      dbname: [dbname]
-      schema: [dev_schema]
-
-    prod:
-      type: postgres
-      threads: [1 or more]
-      host: [host]
-      port: [port]
-      user: [prod_username]
-      pass: [prod_password]
-      dbname: [dbname]
-      schema: [prod_schema]
-
+hive:
   target: dev
+  outputs:
+    dev:
+      type: hive
+      host: host.docker.internal
+      port: 10000 # default value: 10000
+      schema: raw
