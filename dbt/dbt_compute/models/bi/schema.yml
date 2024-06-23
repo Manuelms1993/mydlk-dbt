@@ -1,0 +1,61 @@
+version: 2
+
+
+sources:
+  - name: raw
+    database: raw
+    tables:
+      - name: films
+      - name: imdb
+
+
+models:
+
+  - name: joined_films_imdb
+    description: "A dbt model that joins raw.films and raw.imdb and materializes the result with a new table name"
+    columns: [ ]  # Since we're selecting all columns using SELECT *, no need to specify each column explicitly
+
+  - name: films
+    database: raw
+    description: "films"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+          - unique
+      - name: title
+        description: "The title of the film"
+      - name: type
+        description: "The type of the film (e.g., movie, series)"
+      - name: release_year
+        description: "The release year of the film"
+      - name: age_certification
+        description: "The age certification of the film"
+        tests:
+          - not_null
+          - unique
+      - name: runtime
+        description: "The runtime of the film in minutes"
+      - name: genres
+        description: "The genres of the film"
+      - name: production_countries
+        description: "The countries where the film was produced"
+      - name: seasons
+        description: "The number of seasons (if applicable)"
+
+  - name: imdb
+    description: "A starter dbt model for the IMDb and TMDB scores"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+      - name: title
+        description: "The title of the film"
+      - name: imdb_score
+        description: "The IMDb score of the film"
+      - name: imdb_votes
+        description: "The number of IMDb votes for the film"
+      - name: tmdb_popularity
+        description: "The TMDB popularity score of the film"
+      - name: tmdb_score
+        description: "The TMDB score of the film"

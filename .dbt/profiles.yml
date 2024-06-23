@@ -4,5 +4,5 @@ hive:
     dev:
       type: hive
       host: host.docker.internal
-      port: 10000 # default value: 10000
-      schema: raw
+      port: 10000
+      schema: bi
